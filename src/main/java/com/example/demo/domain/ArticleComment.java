@@ -20,36 +20,22 @@ import java.util.Objects;
 })
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class ArticleComment {
+public class ArticleComment extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // id
+
     @Setter
     @ManyToOne(optional = false)
     private Article article; // 게시글
+
     @Setter
     @Column(nullable = false, length = 500)
     private String content; // 내용
 
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime createdAt; // 생성일시
-
-    @CreatedBy
-    @Column(nullable = false, length = 100)
-    private String createdBy; // 생성자
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modifiedAt; // 수정일시
-
-    @LastModifiedBy
-    @Column(nullable = false, length = 100)
-    private String modifiedBy; // 수정자
-
     public ArticleComment() {
     }
-
     private ArticleComment(Article article, String content) {
         this.article = article;
         this.content = content;
@@ -60,7 +46,6 @@ public class ArticleComment {
     public static ArticleComment of(Article article, String content) {
         return new ArticleComment(article, content);
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,7 +53,6 @@ public class ArticleComment {
         ArticleComment that = (ArticleComment) o;
         return id.equals(that.id);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id);
