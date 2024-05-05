@@ -17,9 +17,20 @@ spring:
     username: sdb
     password: qwe123!@#
     driver-class-name: com.mysql.cj.jdbc.Driver
+  #    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+  #    username: sa
+  #    driver-class-name: org.h2.Driver
+  #    generate-unique-name: false
+
+  h2:
+    console:
+      enabled: false # in-memory 방식을 사용하는 경우 H2 콘솔을 사용 여부
+      settings:
+        web-allow-others: true
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     # 테스트 데이터 만들도록 함
     # data.sql 으로 등록할 경우 해당 sql의 데이터 초기에 등록
     defer-datasource-initialization: true
@@ -32,9 +43,6 @@ spring:
         format_sql: true
         # 벌크로 데이터 읽어올 수 있도록 설정 최대 100개씩 읽어올 수 있도록 설정
         default_batch_fetch_size: 100
-  h2:
-    console:
-      enabled: true
   ## data.sql 초기화 시 읽을지 설정
   sql.init.mode: always
 

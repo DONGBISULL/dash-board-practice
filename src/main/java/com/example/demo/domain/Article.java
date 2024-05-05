@@ -24,7 +24,8 @@ import java.util.Set;
 })
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Article {
+public class Article extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // id
@@ -32,9 +33,11 @@ public class Article {
     @Setter
     @Column(nullable = false)
     private String title; // 제목
+
     @Setter
     @Column(nullable = false, length = 10000)
     private String content; // 내용
+
     @Setter
     private String hashTag; // 해시태그
 
@@ -42,22 +45,6 @@ public class Article {
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     @ToString.Exclude // 보통 one 이 있는 쪽을 toString 연결 끊어줌
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
-
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime createdAt; // 생성일시
-
-    @CreatedBy
-    @Column(nullable = false, length = 100)
-    private String createdBy; // 생성자
-
-    @LastModifiedDate
-    @Column(nullable = false)
-    private LocalDateTime modifiedAt; // 수정일시
-
-    @LastModifiedBy
-    @Column(nullable = false, length = 100)
-    private String modifiedBy; // 수정자
 
     protected Article() {
     }
