@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>게시판 페이지</title>
 </head>
 <body>
 
-<header>
-    header
-    <hr>
-</header>
+<!--<header th:replace="~{header :: header}"> header <hr> </header>-->
+<header id="header"></header>
 <main>
     <form>
         <label hidden name="search-type"> 유형 </label>
@@ -73,8 +71,8 @@
     </nav>
     <hr>
 </main>
-<footer>
-    footer 삽입부
-</footer>
+
+<footer id="footer"></footer>
+<!-- <footer th:replace="~{footer :: footer}"></footer>-->
 </body>
 </html>
