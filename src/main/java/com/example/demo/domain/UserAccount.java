@@ -1,9 +1,16 @@
 package com.example.demo.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.ToString;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.*;
+
+@Getter
+@ToString
+@Table
+@EntityListeners(AuditingEntityListener.class)
+@Entity
 public class UserAccount extends BaseEntity {
 
     @Id
