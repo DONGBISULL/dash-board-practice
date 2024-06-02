@@ -14,7 +14,7 @@ public class ThymeleafConfig {
             Thymeleaf3Properties thymeleaf3Properties
     ) {
 
-        defaultTemplateResolver.setUseDecoupledLogic(thymeleaf3Properties.decoupledLogic());
+        defaultTemplateResolver.setUseDecoupledLogic(thymeleaf3Properties.decoupledLogic()); // html과 xml 템플릿에서 순수 마크업 부분 분리
 
         return defaultTemplateResolver;
     }
